@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import com.qbit.Objects.ActivationRequest;
 import com.qbit.Objects.ActivationResponse;
 import com.qbit.Objects.Customer;
+import com.qbit.Utils.DatabaseConnection;
+import com.qbit.Utils.EmailManager;
+import com.qbit.Utils.Encryptor;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -20,10 +23,12 @@ public class ActivationServlet extends HttpServlet{
     private static final long serialVersionID = 1L;
 
     private DatabaseConnection dbConnection;
+    private Encryptor encryptor;
 
     @Override
     public void init() throws ServletException {
         super.init();
+        encryptor = Encryptor.getInstance(24, 11);
 
         dbConnection = new DatabaseConnection();
         try {
@@ -53,10 +58,8 @@ public class ActivationServlet extends HttpServlet{
             activationRequest = gson.fromJson(json, ActivationRequest.class);
         }
 
-        // TODO: Take the email from the request and generate activation code
-
         try {
-            EmailManager.generateAndSendEmail(activationRequest.getEmail(), "98165198652132");
+            EmailManager.generateAndSendEmail(activationRequest.getEmail(), encryptor.encrypt(activationRequest.getEmail()), activationRequest.getName());
         } catch (MessagingException e) {
             e.printStackTrace();
         }

@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-        <display-name>ActivationService</display-name>
+    <display-name>ActivationService</display-name>
 
-        <servlet>
-            <servlet-name>ActivationServlet</servlet-name>
-            <servlet-class>com.qbit.ActivationServlet</servlet-class>
-        </servlet>
+    <servlet>
+        <servlet-name>ActivationServlet</servlet-name>
+        <servlet-class>com.qbit.ActivationServlet</servlet-class>
+    </servlet>
 
-        <servlet-mapping>
-            <servlet-name>ActivationServlet</servlet-name>
-            <url-pattern>/Activate</url-pattern>
-        </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActivationServlet</servlet-name>
+        <url-pattern>/Activate</url-pattern>
+    </servlet-mapping>
 
 </web-app>

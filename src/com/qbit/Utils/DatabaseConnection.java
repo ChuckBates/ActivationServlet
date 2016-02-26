@@ -1,4 +1,4 @@
-package com.qbit;
+package com.qbit.Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
